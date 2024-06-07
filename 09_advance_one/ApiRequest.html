@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121;">
+    <h1 style="color: #ffffff;">API REQUEST AND V8 ENGINES</h1>
+    <div class="pic">
+        <div class="card">
+        <img class="imgs" src="img_avatar.png" alt="Avatar" style="width:100%">
+        <div class="container">
+          <h4>John Doe</h4>
+          <p>Architect & Engineer</p>
+        </div>
+      </div>
+    </div>
+</body>
+<script>
+    let data
+    const requestArrival='https://api.github.com/users/hiteshchoudhary'
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET',requestArrival)
+    xhr.onreadystatechange=function(){
+        console.log(xhr.readyState);
+        data=JSON.parse(this.responseText)
+        if (xhr.readyState===4) {
+            console.log(typeof data)
+            console.log(data)
+            console.log(data.followers)
+        }
+        console.log(data.followers)
+    }
+    xhr.send();
+
+    document.querySelector(".imgs").setAttribute("src" , `${data.avatar_url}`);
+document.querySelector("h4").innerHTML = `${data.name} , Followers : ${data.followers}`;
+</script>
+</html>
